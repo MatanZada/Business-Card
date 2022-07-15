@@ -5,9 +5,10 @@ import Header from "./components/Header";
 import About from "./components/About";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/common/PageHeader";
-import Signup from "./components/Signup";
+import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import SignOut from "./components/SignOut";
+import SignUpBiz from "./components/SignUpBiz";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,7 +21,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="signup" element={<Signup redirect="/signin" />} />
+          <Route path="signup" element={<SignUp redirect="/signin" />} />
+          <Route
+            path="signupBiz"
+            element={<SignUpBiz redirect="/create-card" />}
+          />
           <Route path="signin" element={<SignIn redirect="/" />} />
           <Route path="signout" element={<SignOut redirect="/" />} />
         </Routes>

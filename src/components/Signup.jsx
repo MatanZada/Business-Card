@@ -3,7 +3,7 @@ import Joi from "joi";
 import { useState } from "react";
 import Input from "./common/Input";
 import PageHeader from "./common/PageHeader";
-import { FormikValidateUsingJoi } from "./utils/FormikValidateUsingJoi";
+import { FormikValidateUsingJoi } from "../utils/FormikValidateUsingJoi";
 import { createUser } from "../services/usersService";
 import { useNavigate, Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -53,7 +53,7 @@ const Signup = ({ redirect }) => {
     <>
       <PageHeader
         title="Sign Up with Real App"
-        description="Open a new account, it is free you yammani!"
+        description="Open a new account, it's free!"
       />
 
       <form noValidate autoComplete="off" onSubmit={form.handleSubmit}>

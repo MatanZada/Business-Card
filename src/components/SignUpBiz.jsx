@@ -1,36 +1,40 @@
-import Joi from "joi";
-import { useNavigate, Navigate } from "react-router-dom";
-import { useState } from "react";
-import formikValidateUsingJoi from "../utils/FormikValidateUsingJoi";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
-import PageHeader from "./common/PageHeader";
+import Joi from "joi";
+import { useState } from "react";
 import Input from "./common/Input";
-import { loginUser } from "../services/usersService";
+import PageHeader from "./common/PageHeader";
+import { FormikValidateUsingJoi } from "../utils/FormikValidateUsingJoi";
+import { createUser } from "../services/usersService";
+import { useNavigate, Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 
-const SignIn = ({ redirect }) => {
-  const [error, setError] = useState("");
-  const { user, login } = useAuth();
+const SignUpBiz = ({ redirect }) => {
   const navigate = useNavigate();
+  const { user, login } = useAuth();
+
+  const [error, setError] = useState("");
 
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
       email: "",
       password: "",
+      name: "",
     },
-    validate: formikValidateUsingJoi({
+    validate: FormikValidateUsingJoi({
       email: Joi.string()
-        .min(6)
-        .max(255)
-        .required()
-        .email({ tlds: { allow: false } }),
-      password: Joi.string().min(6).max(1024).required(),
+        .email({ tlds: { allow: false } })
+        .required(),
+      password: Joi.string().min(6).required(),
+      name: Joi.string().min(2).required(),
     }),
     async onSubmit(values) {
       try {
-        await login(values);
+        await createUser({ ...values, biz: true });
+        await login({ email: values.email, password: values.password });
+
+        toast("Your account is ready 👏");
 
         if (redirect) {
           navigate(redirect);
@@ -50,8 +54,8 @@ const SignIn = ({ redirect }) => {
   return (
     <>
       <PageHeader
-        title="Sign In"
-        description="Sign in to your account! NOW!!"
+        title="Sign Up for Business with Real App"
+        description="Opening a business account! "
       />
 
       <form noValidate autoComplete="off" onSubmit={form.handleSubmit}>
@@ -69,14 +73,21 @@ const SignIn = ({ redirect }) => {
           {...form.getFieldProps("password")}
           error={form.touched.password && form.errors.password}
         />
+        <Input
+          type="name"
+          label="Name"
+          {...form.getFieldProps("name")}
+          error={form.touched.name && form.errors.name}
+        />
 
         <div className="my-2">
           <button disabled={!form.isValid} className="btn btn-primary">
-            Sign In
+            Business Sign Up
           </button>
         </div>
       </form>
     </>
   );
 };
-export default SignIn;
+
+export default SignUpBiz;
