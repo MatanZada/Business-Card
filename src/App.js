@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateCard from "./components/CreateCard";
 import MyCards from "./components/MyCards";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 
 function App() {
   return (
@@ -24,7 +25,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="create-card" element={<CreateCard />} />
-          <Route path="my-cards" element={<MyCards />} />
+          <Route
+            path="my-cards"
+            element={
+              /* A component that checks if the user is logged in. If not, it redirects to the signin
+             page. */
+              <ProtectedRoute>
+                <MyCards />
+              </ProtectedRoute>
+            }
+          />
           <Route path="signup" element={<SignUp redirect="/signin" />} />
           <Route
             path="signupBiz"
