@@ -13,7 +13,7 @@ const CreateCard = ({ redirect }) => {
   const navigate = useNavigate();
 
   const form = useFormik({
-    validate: true,
+    validateOnMount: true,
     initialValues: {
       bizName: "",
       bizDescription: "",
@@ -44,10 +44,10 @@ const CreateCard = ({ redirect }) => {
           body.bizImage = bizImage;
         }
 
-        await createCard(values);
-        toast("A new card created 👏");
+        await createCard(body);
+        toast("A new Card Created👏");
 
-        navigate("/");
+        navigate("/my-cards");
       } catch ({ response }) {
         if (response.status === 400) {
           setError(response.data);
@@ -55,6 +55,7 @@ const CreateCard = ({ redirect }) => {
       }
     },
   });
+
   return (
     <>
       <PageHeader title="Create Card" description="Create Card" />
