@@ -34,9 +34,9 @@ const Header = () => {
             </li>
             {user?.biz && (
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink to="my-cards" className="nav-link">
                   My Cards
-                </a>
+                </NavLink>
               </li>
             )}
           </ul>
