@@ -25,7 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route
-            path="create-card"
+            path="my-cards/create-card"
             element={
               <ProtectedRoute onlyBiz>
                 <CreateCard />
@@ -44,7 +44,7 @@ function App() {
           />
           <Route
             path="signupBiz"
-            element={<SignUpBiz redirect="/create-card" />}
+            element={<SignUpBiz redirect="my-cards/create-card" />}
           />
           <Route path="signup" element={<SignUp redirect="/signin" />} />
           <Route path="signin" element={<SignIn redirect="/" />} />
