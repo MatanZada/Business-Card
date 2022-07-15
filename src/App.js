@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CreateCard from "./components/CreateCard";
 import MyCards from "./components/MyCards";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import DeleteCard from "./components/DeleteCard";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
+
           <Route
             path="my-cards/create-card"
             element={
@@ -32,20 +34,31 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="my-cards/delete-card/:id"
+            element={
+              <ProtectedRoute onlyBiz>
+                <DeleteCard />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="my-cards"
             element={
-              /* A component that checks if the user is logged in. If not, it redirects to the signin
-             page. */
+              //A component that checks if the user is logged in. If not, it redirects to the signin page.
               <ProtectedRoute onlyBiz>
                 <MyCards />
               </ProtectedRoute>
             }
           />
+
           <Route
             path="signupBiz"
             element={<SignUpBiz redirect="my-cards/create-card" />}
           />
+
           <Route path="signup" element={<SignUp redirect="/signin" />} />
           <Route path="signin" element={<SignIn redirect="/" />} />
           <Route path="signout" element={<SignOut redirect="/" />} />
