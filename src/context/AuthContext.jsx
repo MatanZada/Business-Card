@@ -7,7 +7,7 @@ export const authContext = createContext(null);
 authContext.displayName = "auth-context";
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(usersService.getUser());
 
   const refreshUser = () => {
     setUser(usersService.getUser());

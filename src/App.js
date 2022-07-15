@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import About from "./components/About";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/common/PageHeader";
+import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import SignOut from "./components/SignOut";
@@ -24,22 +24,29 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="create-card" element={<CreateCard />} />
+          <Route
+            path="create-card"
+            element={
+              <ProtectedRoute onlyBiz>
+                <CreateCard />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="my-cards"
             element={
               /* A component that checks if the user is logged in. If not, it redirects to the signin
              page. */
-              <ProtectedRoute>
+              <ProtectedRoute onlyBiz>
                 <MyCards />
               </ProtectedRoute>
             }
           />
-          <Route path="signup" element={<SignUp redirect="/signin" />} />
           <Route
             path="signupBiz"
             element={<SignUpBiz redirect="/create-card" />}
           />
+          <Route path="signup" element={<SignUp redirect="/signin" />} />
           <Route path="signin" element={<SignIn redirect="/" />} />
           <Route path="signout" element={<SignOut redirect="/" />} />
         </Routes>
