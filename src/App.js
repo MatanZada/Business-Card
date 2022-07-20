@@ -35,7 +35,7 @@ function App() {
           />
 
           <Route
-            path="my-cards/delete-card/:id"
+            path="my-cards/delete/:id"
             element={
               <ProtectedRoute onlyBiz>
                 <DeleteCard />

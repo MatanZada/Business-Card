@@ -9,13 +9,18 @@ export function getAll() {
 }
 
 export function deleteCard(id) {
-  return httpService.delete(); // TODO
+  return httpService.delete(`/cards/${id}`);
+}
+
+export function getById(id) {
+  return httpService.get(`/cards/${id}`);
 }
 
 const cardsService = {
   createCard,
   getAll,
   deleteCard,
+  getById,
 };
 
 export default cardsService;

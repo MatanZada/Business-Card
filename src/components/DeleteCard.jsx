@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import cardsService from "../services/cardsService";
+
 const DeleteCard = () => {
+  const params = useParams();
   const navigate = useNavigate();
-  const { id } = useParams();
 
   useEffect(() => {
-    async function deleteCard() {
-      await cardsService.deleteCard(id);
+    const deleteCard = async () => {
+      await cardsService.deleteCard(params.id);
       navigate("/my-cards");
-    }
+    };
+
     deleteCard();
-  });
+  }, []);
+
   return null;
 };
 
