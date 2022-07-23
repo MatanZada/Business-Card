@@ -12,6 +12,10 @@ export function deleteCard(id) {
   return httpService.delete(`/cards/${id}`);
 }
 
+export function editCard(id, card) {
+  return httpService.put(`/cards/${id}`, card);
+}
+
 export function getById(id) {
   return httpService.get(`/cards/${id}`);
 }
@@ -20,6 +24,7 @@ const cardsService = {
   createCard,
   getAll,
   deleteCard,
+  editCard,
   getById,
 };
 
