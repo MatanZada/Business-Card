@@ -14,6 +14,7 @@ import CreateCard from "./components/CreateCard";
 import MyCards from "./components/MyCards";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import DeleteCard from "./components/DeleteCard";
+import EditCard from "./components/EditCard";
 
 function App() {
   return (
@@ -39,6 +40,15 @@ function App() {
             element={
               <ProtectedRoute onlyBiz>
                 <DeleteCard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="my-cards/edit/:id"
+            element={
+              <ProtectedRoute onlyBiz>
+                <EditCard />
               </ProtectedRoute>
             }
           />
