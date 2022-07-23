@@ -8,7 +8,7 @@ import PageHeader from "./common/PageHeader";
 import { useState } from "react";
 import { createCard } from "../services/cardsService";
 
-const CreateCard = ({ redirect }) => {
+const CreateCard = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
