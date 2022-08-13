@@ -11,7 +11,7 @@ const Header = () => {
     >
       <div className="container">
         <Link className="navbar-brand" to="/">
-          Real<i className="bi bi-geo-fill"></i>App
+          My<i class="bi bi-image-fill"></i>Gallery
         </Link>
         <button
           className="navbar-toggler"

@@ -5,11 +5,12 @@ const Home = () => {
     <PageHeader
       title={
         <>
-          Real<i className="bi bi-geo-fill"></i>App Home Page
+          <h1>Welcome to my gallery</h1>
+          My<i class="bi bi-image-fill"></i>Gallery
         </>
       }
       description={
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. At dolorum explicabo voluptatibus est! Illo laudantium, expedita eveniet architecto tenetur facere!"
+        "You have reached the home page, here you will receive information on how to add a photo to your gallery!"
       }
     />
   );
